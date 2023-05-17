@@ -24,7 +24,6 @@ async function fakeFollowers() {
   for (let i = 0; i < Math.floor(Math.random() * users.length); i++) {
     const element = users[i];
     followers.push(element._id);
-    console.log(followers.length);
   }
   return followers;
 }
