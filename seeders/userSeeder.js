@@ -24,13 +24,13 @@ async function fakeFollowers() {
   const users = await User.find({});
   for (let i = 0; i < Math.floor(Math.random() * users.length); i++) {
     const element = users[i];
-    followers.push(element._id);
+    followers.push(element);
   }
   console.log(followers.length);
   return followers;
 }
 
-module.exports = async () => {
+async function insertUsers() {
   await User.deleteMany();
   const users = [];
 
@@ -46,13 +46,18 @@ module.exports = async () => {
     });
   }
   await User.insertMany(users);
-
+}
+async function insertFollowers() {
+  const updateUsers = {};
+  const users = await User.find({});
   for (let i = 0; i < 100; i++) {
-    users.push({
-      followers: await fakeFollowers(),
-    });
+    const followers = await fakeFollowers();
+    const updateUsers = {
+      $set: { followers: fakeFollowers() },
+    };
   }
 
-  await User.insertMany(users);
-  console.log("[Database] Se corrió el seeder de Users.");
-};
+  await User.updateMany({}, updateUsers);
+}
+module.exports = { insertUsers, insertFollowers };
+console.log("[Database] Se corrió el seeder de Users.");
