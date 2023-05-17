@@ -3,21 +3,21 @@ const { mongoose, Schema } = require("../db");
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
   },
   email: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
   },
   firstname: {
     type: String,
-    required: true,
+    // required: true,
   },
   lastname: {
     type: String,
-    required: true,
+    // required: true,
   },
   description: {
     type: String,
@@ -28,7 +28,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    //  required: true,
   },
   followers: [],
   following: [],
