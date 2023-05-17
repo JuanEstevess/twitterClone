@@ -30,6 +30,7 @@ module.exports = async () => {
       username: faker.internet.userName(),
       password: await bcrypt.hash("123456", 5),
       img: faker.image.avatar(),
+      description: faker.lorem.sentence().slice(0, 120),
     });
   }
 
