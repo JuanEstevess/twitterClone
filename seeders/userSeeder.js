@@ -19,11 +19,23 @@ const bcrypt = require("bcryptjs");
 
 faker.locale = "es";
 
-module.exports = async () => {
-  const user = [];
+async function fakeFollowers() {
+  const followers = [];
+  const users = await User.find({});
+  for (let i = 0; i < Math.floor(Math.random() * users.length); i++) {
+    const element = users[i];
+    followers.push(element._id);
+  }
+  console.log(followers.length);
+  return followers;
+}
 
-  for (let i = 0; i < 10; i++) {
-    user.push({
+module.exports = async () => {
+  await User.deleteMany();
+  const users = [];
+
+  for (let i = 0; i < 100; i++) {
+    users.push({
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
       email: faker.internet.email(),
@@ -33,8 +45,14 @@ module.exports = async () => {
       description: faker.lorem.sentence().slice(0, 120),
     });
   }
+  await User.insertMany(users);
 
-  await User.deleteMany();
-  await User.insertMany(user);
+  for (let i = 0; i < 100; i++) {
+    users.push({
+      followers: await fakeFollowers(),
+    });
+  }
+
+  await User.insertMany(users);
   console.log("[Database] Se corrió el seeder de Users.");
 };
