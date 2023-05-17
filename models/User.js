@@ -18,7 +18,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  description: String,
+  description: {
+    type: String,
+    maxlength: 120,
+  },
   image: String,
   passwrd: {
     type: String,
