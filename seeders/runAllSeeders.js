@@ -28,7 +28,7 @@ async function runAllSeeders() {
 
   // Seeders:
 
-  //await require("./userSeeder")();
+  await require("./userSeeder")();
   await require("./tweetSeeder")();
 
   /**
