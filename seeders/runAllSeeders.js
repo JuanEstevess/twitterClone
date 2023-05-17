@@ -28,11 +28,8 @@ async function runAllSeeders() {
 
   // Seeders:
 
-  //await require("./userSeeder")();
+  await require("./userSeeder")();
   // await require("./tweetSeeder")();
-  const func = require("./userSeeder");
-  await func.insertUsers();
-  await func.insertFollowers();
 
   /**
    * Aquí se pueden ejectuar otros seeders que hayan en el sistema.

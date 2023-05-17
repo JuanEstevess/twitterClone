@@ -12,7 +12,6 @@
  * cantidad de registros de prueba que se insertarán en la base de datos.
  *
  */
-
 const { faker } = require("@faker-js/faker");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
@@ -24,13 +23,13 @@ async function fakeFollowers() {
   const users = await User.find({});
   for (let i = 0; i < Math.floor(Math.random() * users.length); i++) {
     const element = users[i];
-    followers.push(element);
+    followers.push(element._id);
+    console.log(followers.length);
   }
-  console.log(followers.length);
   return followers;
 }
 
-async function insertUsers() {
+module.exports = async () => {
   await User.deleteMany();
   const users = [];
 
@@ -46,18 +45,20 @@ async function insertUsers() {
     });
   }
   await User.insertMany(users);
-}
-async function insertFollowers() {
-  const updateUsers = {};
-  const users = await User.find({});
-  for (let i = 0; i < 100; i++) {
+
+  console.log("Se crearon los usuarios.");
+
+  const allUsers = await User.find({});
+  for (let i = 0; i < allUsers.length; i++) {
     const followers = await fakeFollowers();
-    const updateUsers = {
-      $set: { followers: fakeFollowers() },
-    };
+    const user = allUsers[i];
+    for (let j = 0; j < followers.length; j++) {
+      const element = followers[j];
+      user.followers.push(element);
+    }
+    await user.save();
   }
 
-  await User.updateMany({}, updateUsers);
-}
-module.exports = { insertUsers, insertFollowers };
-console.log("[Database] Se corrió el seeder de Users.");
+  console.log("Se asignaron los seguidores a los usuarios.");
+  console.log("[Database] Se corrió el seeder de Users.");
+};
