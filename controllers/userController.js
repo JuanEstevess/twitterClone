@@ -14,30 +14,35 @@ async function show(req, res) {
 
 // Show the form for creating a new resource
 async function create(req, res) {
-  return res.render("users/create"); //ajustar ruta
+  return res.render("pages/register"); //ajustar ruta
 }
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  const { email, username } = req.body;
-  const existingUser = await User.findOneAndUpdate({ email, username }); //
-
-  if (existingUser) {
-    return res.send("El mail ya se encuentra registrado");
-  } else {
-    const newUser = new User({
-      username: req.body.username,
-      email: req.body.email,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      password: req.body.password,
-      image: req.body.image,
+  const register = await User.updateOne(
+    {
+      email: req.params.email,
+    },
+    {
+      $setOnInsert: {
+        username: req.body.username,
+        email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        password: req.body.password,
+      },
+    },
+    { upsert: true },
+  );
+  if (register) {
+    req.login(user, () => {
+      //req.flash("success", "User created succesfully");
+      res.redirect("/");
     });
-
-    await User.create({ newUser });
+  } else {
+    //req.flash("info", "User already exists, please log in");
+    res.redirect("/login");
   }
-
-  return res.redirect("/");
 }
 
 // Show the form for editing the specified resource.
