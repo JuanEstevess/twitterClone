@@ -35,7 +35,8 @@ async function store(req, res) {
     },
     { upsert: true },
   );
-  if (register) {
+
+  if (register.upserted) {
     req.login(user, () => {
       //req.flash("success", "User created succesfully");
       res.redirect("/");
@@ -55,7 +56,18 @@ async function update(req, res) {}
 // Remove the specified resource from storage.
 async function destroy(req, res) {}
 
-// ...
+async function like(req, res) {
+  const tweetId = req.params._id;
+  const tweet = await Tweet.findByIdAndUpdate(tweetId, { $inc: { likes: 1 } });
+
+  if (!tweet) {
+    return res.send("Tweet no encontrado");
+  } else {
+    tweet.likes += 1;
+    await tweet.save();
+  }
+  return tweet;
+}
 
 module.exports = {
   index,
@@ -65,4 +77,5 @@ module.exports = {
   edit,
   update,
   destroy,
+  like,
 };

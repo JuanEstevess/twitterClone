@@ -1,28 +1,33 @@
 const Tweet = require("../models/Tweet");
 
 async function indexTweet(req, res) {
-  return res.render("pages/index");
+  return res.render("pages/index"); //revisar redirect
 }
 
 async function storeTweet(req, res) {
-  return res.redirect("/");
+  const user = req.params.user;
+
+  const newTweet = new Tweet({
+    content: req.body.content,
+    likes: [],
+    date: new Date(),
+    author: user._id,
+  });
+
+  await newTweet.save();
+
+  return res.redirect("/"); //reviar redirect
 }
 
-async function like(req, res) {
-  const tweetId = req.params._id;
-  const tweet = await Tweet.findByIdAndUpdate(tweetId, { $inc: { likes: 1 } });
+async function destroy(req, res) {
+  const id = req.params._id;
+  await Tweet.deleteOne({ _id: id });
 
-  if (!tweet) {
-    return res.send("Tweet no encontrado");
-  } else {
-    tweet.likes += 1;
-    await tweet.save();
-  }
-  return tweet;
+  return res.render("pages/index"); //corregir ruta de renderizado
 }
 
 module.exports = {
   indexTweet,
   storeTweet,
-  like,
+  destroy,
 };
