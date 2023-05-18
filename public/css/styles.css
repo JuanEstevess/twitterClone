@@ -1,1 +1,12 @@
-/* Colocar aquí CSS "propio". */
+:root {
+  --color-principal: #1d9bf0;
+  --color-secundario: #064874;
+}
+
+body {
+  background: var(--color-secundario);
+}
+
+.loginSide {
+  background: var(--color-principal);
+}
