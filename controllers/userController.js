@@ -22,7 +22,20 @@ async function update(req, res) {}
 async function destroy(req, res) {}
 
 // Otros handlers...
+
 // ...
+/*async function like(req, res) {
+  const tweetId = req.params._id;
+  const tweet = await Tweet.findByIdAndUpdate(tweetId, { $inc: { likes: 1 } });
+
+  if (!tweet) {
+    return res.send("Tweet no encontrado");
+  } else {
+    tweet.likes += 1;
+    await tweet.save();
+  }
+  return tweet;
+} (capaz sirve para los likes)*/
 
 module.exports = {
   index,
