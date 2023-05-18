@@ -1,11 +1,11 @@
 const Tweet = require("../models/Tweet");
 
 async function indexTweet(req, res) {
-  return res.render("home");
+  return res.render("pages/index");
 }
 
 async function storeTweet(req, res) {
-  return res.render("create tweet");
+  return res.redirect("/");
 }
 
 async function like(req, res) {
