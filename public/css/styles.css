@@ -3,10 +3,6 @@
   --color-secundario: #064874;
 }
 
-body {
-  background: var(--color-secundario);
-}
-
 .loginSide {
   background: var(--color-principal);
 }
@@ -14,4 +10,10 @@ body {
 .btn-login {
   color: white;
   background: var(--color-principal);
+}
+
+@media (max-width: 767px) {
+  .login-container {
+    border-radius: 0.5rem;
+  }
 }

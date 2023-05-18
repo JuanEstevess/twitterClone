@@ -1,5 +1,6 @@
 const Tweet = require("../models/Tweet");
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -21,7 +22,7 @@ async function create(req, res) {
 async function store(req, res) {
   const register = await User.updateOne(
     {
-      email: req.params.email,
+      email: req.body.email,
     },
     {
       $setOnInsert: {
@@ -29,7 +30,7 @@ async function store(req, res) {
         email: req.body.email,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        password: req.body.password,
+        password: await bcrypt.hash(req.body.password, 5),
       },
     },
     { upsert: true },
