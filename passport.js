@@ -14,9 +14,7 @@ const bcrypt = require("bcryptjs");
 const User = require("./models/User");
 const Tweet = require("./models/Tweet");
 
-module.exports = (app) => {
-  app.use(passport.session());
-
+function passportConfig() {
   passport.use(
     new LocalStrategy(
       {
@@ -31,7 +29,9 @@ module.exports = (app) => {
             return done(null, false, { message: "Credenciales incorrectas" });
           }
           const checkPassword = await bcrypt.compare(password, user.password);
+          console.log(checkPassword);
           if (!checkPassword) {
+            console.log(checkPassword);
             return done(null, false, { message: "Credenciales incorrectas" });
           }
           return done(null, user);
@@ -48,12 +48,12 @@ module.exports = (app) => {
 
   passport.deserializeUser(async function (id, done) {
     try {
-      const user = await User.findById(id, { include: Tweet });
-      donde(null, user);
+      const user = await User.findById(id);
+      done(null, user);
     } catch (error) {
       done(error);
     }
   });
-};
+}
 
-module.exports = passport;
+module.exports = passportConfig;

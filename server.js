@@ -4,8 +4,12 @@ const methodOverride = require("method-override");
 const express = require("express");
 
 const sessions = require("./sessions");
+const passport = require("passport");
+const passportConfig = require("./passport");
 const routes = require("./routes");
-const passport = require("./passport");
+
+const makeUserAvailableInViews = require("./middlewares/makeUserAvailableInViews");
+const { default: areIntervalsOverlapping } = require("date-fns/areIntervalsOverlapping/index");
 
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
@@ -16,7 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 sessions(app);
-passport(app);
+app.use(passport.session());
+passportConfig();
+app.use(makeUserAvailableInViews);
 routes(app);
 
 app.listen(APP_PORT, () => {

@@ -1,6 +1,6 @@
-const { passport } = require("../config/passport");
+const passport = require("passport");
 
-async function login(req, res, next) {
+async function login(req, res) {
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
@@ -10,7 +10,7 @@ async function login(req, res, next) {
 async function logout(req, res) {
   req.logout(function (error) {
     if (error) {
-      return next(error);
+      throw error;
     }
     res.redirect("/");
   });

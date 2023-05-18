@@ -4,6 +4,7 @@
  */
 
 const userRoutes = require("./userRoutes");
+const authRoutes = require("./authRoutes");
 // const articleRoutes = require("./articleRoutes");
 // const commentRoutes = require("./commentRoutes");
 
@@ -29,6 +30,7 @@ module.exports = (app) => {
    */
 
   app.use("/usuarios", userRoutes);
+  app.use("/", authRoutes);
   app.use("/", publicRoutes);
 };
 
