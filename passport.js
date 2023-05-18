@@ -29,9 +29,8 @@ function passportConfig() {
             return done(null, false, { message: "Credenciales incorrectas" });
           }
           const checkPassword = await bcrypt.compare(password, user.password);
-          console.log(checkPassword);
+
           if (!checkPassword) {
-            console.log(checkPassword);
             return done(null, false, { message: "Credenciales incorrectas" });
           }
           return done(null, user);
