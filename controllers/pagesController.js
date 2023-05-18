@@ -21,7 +21,7 @@ async function showLogin(req, res) {
 }
 
 async function showHome(req, res) {
-  res.render("pages/home");
+  res.render("pages/index");
 }
 
 async function showContact(req, res) {
