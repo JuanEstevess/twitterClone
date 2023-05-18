@@ -10,6 +10,9 @@
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const bcrypt = require("bcryptjs");
+const User = require("./models/User");
+const Tweet = require("./models/Tweet");
 
 module.exports = (app) => {
   app.use(passport.session());
@@ -20,22 +23,37 @@ module.exports = (app) => {
         usernameField: "email",
         passwordField: "password",
       },
-      async function (username, password, cb) {
-        // Este código sólo se llama si username y password están definidos.
-        console.log("[LocalStrategy] Username:", username); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-        console.log("[LocalStrategy] Password:", password); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-        // Completar código...
+      async function (email, password, done) {
+        try {
+          const user = await User.findOne({ email: email });
+
+          if (!user) {
+            return done(null, false, { message: "Credenciales incorrectas" });
+          }
+          const checkPassword = await bcrypt.compare(password, user.password);
+          if (!checkPassword) {
+            return done(null, false, { message: "Credenciales incorrectas" });
+          }
+          return done(null, user);
+        } catch (error) {
+          console.log(error);
+        }
       },
     ),
   );
 
-  passport.serializeUser((user, done) => {
-    console.log("[Passport] Serialize User"); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-    // Completar código...
+  passport.serializeUser(function (user, done) {
+    done(null, user._id);
   });
 
-  passport.deserializeUser(async (id, done) => {
-    console.log("[Passport] Deserialize User"); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-    // Completar código...
+  passport.deserializeUser(async function (id, done) {
+    try {
+      const user = await User.findById(id, { include: Tweet });
+      donde(null, user);
+    } catch (error) {
+      done(error);
+    }
   });
 };
+
+module.exports = passport;
