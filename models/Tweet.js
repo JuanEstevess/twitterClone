@@ -6,7 +6,7 @@ const tweetSchema = new Schema({
     type: String,
     maxlength: 140,
   },
-  likes: Number,
+  likes: [],
   date: Date,
   user: {
     type: Schema.Types.ObjectId,
