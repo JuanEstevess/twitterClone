@@ -35,6 +35,7 @@ async function store(req, res) {
     },
     { upsert: true },
   );
+
   if (register) {
     req.login(user, () => {
       //req.flash("success", "User created succesfully");
