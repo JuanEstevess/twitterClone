@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const tweetController = require("../controllers/tweetController");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
-// router.get("/", userController.index);
+router.get("/", ensureAuthenticated, tweetController.indexTweet);
 // router.get("/crear", userController.create);
 // router.get("/:id", userController.show);
 // router.post("/", userController.store);

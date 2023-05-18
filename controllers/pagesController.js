@@ -16,6 +16,10 @@
  * no debería existir.
  */
 
+async function showLogin(req, res) {
+  res.render("pages/login");
+}
+
 async function showHome(req, res) {
   res.render("pages/home");
 }
@@ -39,4 +43,5 @@ module.exports = {
   showHome,
   showContact,
   showAboutUs,
+  showLogin,
 };
