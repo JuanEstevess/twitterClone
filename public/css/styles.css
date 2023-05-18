@@ -10,3 +10,8 @@ body {
 .loginSide {
   background: var(--color-principal);
 }
+
+.btn-login {
+  color: white;
+  background: var(--color-principal);
+}
