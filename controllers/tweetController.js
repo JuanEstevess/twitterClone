@@ -1,7 +1,7 @@
 const Tweet = require("../models/Tweet");
 
 async function indexTweet(req, res) {
-  return res.render("pages/index");
+  return res.render("pages/index"); //revisar redirect
 }
 
 async function storeTweet(req, res) {
@@ -16,7 +16,7 @@ async function storeTweet(req, res) {
 
   await newTweet.save();
 
-  return res.redirect("/");
+  return res.redirect("/"); //reviar redirect
 }
 
 async function destroy(req, res) {
