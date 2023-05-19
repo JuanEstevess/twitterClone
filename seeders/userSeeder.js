@@ -57,7 +57,7 @@ async function fakeFollowers() {
   const users = await User.find({});
   for (let i = 0; i < Math.floor(Math.random() * users.length); i++) {
     const element = users[i];
-    followers.push(element);
+    followers.push(element._id);
   }
   return followers;
 }
