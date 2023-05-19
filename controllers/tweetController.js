@@ -3,6 +3,11 @@ const path = require("path");
 
 async function indexTweet(req, res) {
   const allTweets = await Tweet.find().populate({ path: "user" });
+  for (let i = 0; i < allTweets.length; i++) {
+    allTweets[i].formattedData = formattedData(allTweets[i].date);
+    console.log(allTweets[i].formattedData);
+  }
+  console.log(allTweets[99].formattedData);
   return res.render("pages/index", { allTweets });
 }
 
@@ -29,6 +34,32 @@ async function destroy(req, res) {
   await Tweet.deleteOne({ _id: id });
 
   return res.render("pages/index"); //corregir ruta de renderizado
+}
+
+function formattedData(dateTweet) {
+  const currentDate = new Date();
+  dateTweet = new Date(dateTweet);
+
+  const isOldestTweet = dateTweet < currentDate - 1000 * 60 * 60 * 24 * 30;
+  const isOldTweet = dateTweet < currentDate - 1000 * 60 * 60 * 24;
+  const isTodayTweet = dateTweet > currentDate - 1000 * 60 * 60 * 24;
+  let formattedData;
+  if (isTodayTweet) {
+    const hours = Math.floor((currentDate - dateTweet) / (1000 * 60 * 60));
+    formattedData = `${hours} hours ago`;
+  }
+  if (isOldTweet) {
+    const day = dateTweet.toLocaleString("default", { day: "numeric" });
+    const month = dateTweet.toLocaleString("default", { month: "long" });
+    formattedData = `${month} ${day}`;
+  }
+  if (isOldestTweet) {
+    const month = dateTweet.toLocaleString("default", { month: "long" });
+    const year = dateTweet.getFullYear();
+    formattedData = `${month} ${year}`;
+  }
+
+  return formattedData;
 }
 
 module.exports = {
