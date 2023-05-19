@@ -1,7 +1,6 @@
 const Tweet = require("../models/Tweet");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const path = require("path");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -10,7 +9,7 @@ async function index(req, res) {}
 async function show(req, res) {
   const id = req.params.id;
   const user = await User.findById(id);
-  const allTweets = await Tweet.find({ user: id }).populate({ path: "user" }); // Cambiar nombre de variable a Tweets (aca y en el Tweet controller)
+  const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
   return res.render("pages/profile", { allTweets, user });
 }
 
@@ -70,6 +69,12 @@ async function like(req, res) {
   return tweet;
 }
 
+async function showFollowers(req, res) {
+  const id = req.params.id;
+  const user = await User.findById(id);
+  return res.render("pages/followers", { user });
+}
+
 module.exports = {
   index,
   show,
@@ -79,4 +84,5 @@ module.exports = {
   update,
   destroy,
   like,
+  showFollowers,
 };

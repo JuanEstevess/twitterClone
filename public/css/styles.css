@@ -23,6 +23,13 @@
   text-decoration: none;
 }
 
+.icon-end{
+  align-items:end;
+}
+
+.btn-del{
+  border: none;
+}
 .small {
   color: rgb(103, 106, 125);
   font-weight: 280;
