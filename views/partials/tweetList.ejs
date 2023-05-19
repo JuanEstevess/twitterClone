@@ -1,3 +1,5 @@
+
+<% for(let tweet of allTweets){ %>
 <div class="tweet" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px">
   <div class="tweet-header" style="display: flex; align-items: center; margin-bottom: 5px">
     <img
@@ -6,12 +8,12 @@
       class="tweet-avatar"
       style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px"
     />
-    <div class="tweet-username" style="font-weight: bold">Nombre de usuario</div>
-    <div class="tweet-handle" style="color: #888">@nombredeusuario</div>
+    <div class="tweet-fullname" style="font-weight: bold"><%= tweet.firstname %><%= tweet.lastname %></div>
+    <div class="tweet-username" style="color: #888"><%= tweet.username%></div>
     <div>&bull;</div>
-    <div class="tweet-date">Fecha del tweet</div>
+    <div class="tweet-date"><%= tweet.date %></div>
   </div>
-  <div class="tweet-content" style="margin-bottom: 10px">Contenido del tweet</div>
+  <div class="tweet-content" style="margin-bottom: 10px"><%= tweet.content %></div>
   <div
     class="tweet-footer"
     style="display: flex; justify-content: space-between; color: #888; font-size: 12px"
@@ -22,3 +24,4 @@
     </div>
   </div>
 </div>
+<%}%>
