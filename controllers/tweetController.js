@@ -5,7 +5,8 @@ async function indexTweet(req, res) {
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
   }
-  return res.render("pages/index", { allTweets });
+  const isInProfile = false;
+  return res.render("pages/index", { allTweets, isInProfile });
 }
 
 async function storeTweet(req, res) {
