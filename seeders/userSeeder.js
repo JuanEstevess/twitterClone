@@ -54,6 +54,7 @@ module.exports = async () => {
     for (let j = 0; j < followers.length; j++) {
       const element = followers[j];
       user.followers.push(element);
+      user.following.push(element);
     }
     await user.save();
   }
