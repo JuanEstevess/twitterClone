@@ -1,5 +1,4 @@
 const Tweet = require("../models/Tweet");
-const path = require("path");
 
 async function indexTweet(req, res) {
   const allTweets = await Tweet.find().populate({ path: "user" });
