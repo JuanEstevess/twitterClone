@@ -1,7 +1,6 @@
 const Tweet = require("../models/Tweet");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const path = require("path");
 
 // Display a listing of the resource.
 async function index(req, res) {}

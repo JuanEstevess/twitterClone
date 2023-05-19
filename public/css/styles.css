@@ -22,3 +22,11 @@
   color: white;
   text-decoration: none;
 }
+
+.icon-end{
+  align-items:end;
+}
+
+.btn-del{
+  border: none;
+}
