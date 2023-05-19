@@ -7,7 +7,6 @@ async function indexTweet(req, res) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
     console.log(allTweets[i].formattedData);
   }
-  console.log(allTweets[99].formattedData);
   return res.render("pages/index", { allTweets });
 }
 
