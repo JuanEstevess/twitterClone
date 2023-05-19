@@ -1,4 +1,5 @@
 <% for(let tweet of allTweets){ %>
+  <form method="post" action="/uaurios/<%= user._id%>?_method=DELETE">
     <div class="tweet border border-top-0 p-2">
         <div class="tweet-header d-flex" style="margin-bottom: 5px">
         <div>
@@ -31,4 +32,5 @@
         </div>
         </div>
     </div>
+  </form>  
 <%}%>  
