@@ -1,6 +1,6 @@
 <% for(let tweet of allTweets){ %>
   <div class="tweet border border-top-0 p-2">
-    <div class="tweet-header d-flex" style="margin-bottom: 5px">
+    <div class="tweet-header d-flex" style="margin-bottom: 0px 0px 10px">
       <div style="width: 80px">
         <img src="<%= tweet.user.image %>" alt="Avatar del usuario" class="tweet-avatar"
           style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px" />
@@ -26,14 +26,14 @@
             <span><%- include ("../../public/img/icons/like.svg") %></span>
             <span>Count</span>
           </div>
-          <%if (isInProfile) {%>
+          <% if(profile){%>
             <div>
               <i class="icon-end"><button type="submit" class="btn-del"><%-
                     include("../../public/img/icons/delete.svg")%></button></i>
             </div>
-            <% } %>
-
+            <% }%>
         </div>
+
+
       </div>
-    </div>
-    <%}%>
+      <%}%>

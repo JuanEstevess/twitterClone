@@ -13,12 +13,20 @@
           <!-- Contenido de la primera columna -->
       </div>
       <div class="col-md-11 col-lg-6">
-        <%- include("../partials/newTweet") %> <%- include("../partials/tweetList.ejs") %>
+        <%- include("../partials/newTweet") %> <%- include("../partials/tweetList") %>
       </div>
       <div class="d-none d-lg-block col-md-4 col-lg-4">
         <!-- Contenido de la tercera columna -->
         <%- include("../partials/staticSidebar") %>
       </div>
+    </div>
+    <div class="col-md-11 col-lg-6">
+      <%- include("../partials/newTweet") %> <%- include("../partials/tweetList.ejs") %>
+    </div>
+    <div class="d-none d-lg-block col-md-4 col-lg-4">
+      <!-- Contenido de la tercera columna -->
+      <%- include("../partials/staticSidebar") %>
+    </div>
     </div>
   </section>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
