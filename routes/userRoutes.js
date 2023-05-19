@@ -6,7 +6,7 @@ const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
 router.get("/", ensureAuthenticated, tweetController.indexTweet);
 router.get("/crear", userController.create);
-// router.get("/:id", userController.show);
+router.get("/:id", userController.show);
 router.post("/crear", userController.store);
 // router.get("/editar/:id", userController.edit);
 // router.patch("/:id", userController.update);
