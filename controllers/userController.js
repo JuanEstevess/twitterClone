@@ -1,16 +1,17 @@
 const Tweet = require("../models/Tweet");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const path = require("path");
 
 // Display a listing of the resource.
 async function index(req, res) {}
 
 // Display the specified resource.
 async function show(req, res) {
-  const id = req.params._id;
-  const userId = await User.findById({ _id: id });
-
-  return res.render("vista del perfil", { userId }); // ajustar ruta
+  const id = req.params.id;
+  const user = await User.findById(id);
+  const userTweets = await Tweet.find({ user: id }).populate({ path: "user" });
+  return res.render("pages/profile", { userTweets, user });
 }
 
 // Show the form for creating a new resource
