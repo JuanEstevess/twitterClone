@@ -18,7 +18,12 @@
   }
 }
 
-.btn-logout{
+.btn-logout {
   color: white;
   text-decoration: none;
+}
+
+.small {
+  color: rgb(103, 106, 125);
+  font-weight: 280;
 }
