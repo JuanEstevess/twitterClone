@@ -10,8 +10,8 @@ async function index(req, res) {}
 async function show(req, res) {
   const id = req.params.id;
   const user = await User.findById(id);
-  const userTweets = await Tweet.find({ user: id }).populate({ path: "user" });
-  return res.render("pages/profile", { userTweets, user });
+  const allTweets = await Tweet.find({ user: id }).populate({ path: "user" }); // Cambiar nombre de variable a Tweets (aca y en el Tweet controller)
+  return res.render("pages/profile", { allTweets, user });
 }
 
 // Show the form for creating a new resource
