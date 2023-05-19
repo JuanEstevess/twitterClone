@@ -12,7 +12,7 @@ async function logout(req, res) {
     if (error) {
       throw error;
     }
-    res.redirect("/");
+    res.redirect("/login");
   });
 }
 
