@@ -1,22 +1,24 @@
 const Tweet = require("../models/Tweet");
+const path = require("path");
 
 async function indexTweet(req, res) {
   return res.render("pages/index"); //revisar redirect
 }
 
 async function storeTweet(req, res) {
-  const user = req.params.user;
+  const user = req.user;
 
   const newTweet = new Tweet({
-    content: req.body.content,
+    content: req.body.tweetContent,
     likes: [],
     date: new Date(),
     author: user._id,
   });
 
   await newTweet.save();
+  console.log(newTweet);
 
-  return res.redirect("/"); //reviar redirect
+  return res.render(path.join("pages", "index"), { newTweet }); //revisar redirect
 }
 
 async function destroy(req, res) {
