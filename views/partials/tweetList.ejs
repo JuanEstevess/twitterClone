@@ -26,12 +26,13 @@
         <div class="tweet-actions">
           <span><%- include ("../../public/img/icons/like.svg") %></span>
           <span>Count</span>
-        </div>
-        <% if(req.parms === user._id &&  ){%>
+        </div>        
+        <% if(tweet.user._id === locals.user._id && locals.user._id === '/usuarios'+ user._id ){%>
             <div> 
               <i class="icon-end"><button type="submit" class="btn-del"><%- include("../../public/img/icons/delete.svg")%></button></i>
           </div>
-        <%}%>
+        <%} %>
+
       </div>
     </div>
   </div>
