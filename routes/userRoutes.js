@@ -11,5 +11,6 @@ router.post("/crear", userController.store);
 // router.get("/editar/:id", userController.edit);
 // router.patch("/:id", userController.update);
 // router.delete("/:id", userController.destroy);
+router.get("/:id/followers", userController.showFollowers);
 
 module.exports = router;
