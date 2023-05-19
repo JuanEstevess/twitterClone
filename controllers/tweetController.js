@@ -5,7 +5,6 @@ async function indexTweet(req, res) {
   const allTweets = await Tweet.find().populate({ path: "user" });
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
-    console.log(allTweets[i].formattedData);
   }
   return res.render("pages/index", { allTweets });
 }
