@@ -2,9 +2,8 @@ const Tweet = require("../models/Tweet");
 const path = require("path");
 
 async function indexTweet(req, res) {
-  const allTweets = await Tweet.find();
-
-  return res.render("pages/index", { allTweets }); //revisar redirect
+  const allTweets = await Tweet.find().populate({ path: "user" });
+  return res.render("pages/index", { allTweets });
 }
 
 async function storeTweet(req, res) {
@@ -13,12 +12,9 @@ async function storeTweet(req, res) {
 
   const newTweet = new Tweet({
     content: req.body.tweetContent,
-    firstname: user.firstname,
-    lastname: user.lastname,
-    username: user.username,
     likes: [],
     date: new Date(),
-    author: user._id,
+    user: user._id,
   });
 
   await newTweet.save();
