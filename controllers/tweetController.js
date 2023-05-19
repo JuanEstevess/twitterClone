@@ -11,8 +11,6 @@ async function indexTweet(req, res) {
 
 async function storeTweet(req, res) {
   const user = req.user;
-  console.log(user);
-
   const newTweet = new Tweet({
     content: req.body.tweetContent,
     likes: [],
