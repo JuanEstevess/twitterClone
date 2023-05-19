@@ -1,22 +1,22 @@
 <aside>
-  <div>
+  <div class="container">
     <div class="my-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <a href="/">
-        <div class="p-2 mb-4">
+        <div class="mb-4 p-1">
           <div><%- include ("../../public/img/icons/twitter-logo.svg") %></div>
         </div>
       </a>
 
-      <div class="mb-4">
+      <div class="mb-4 p-1">
         <a href="#" class="nav-link" aria-current="page">
-          <span class="p-2"><%- include ("../../public/img/icons/home.svg") %></span>
-          <span>Home</span>
+          <span><%- include ("../../public/img/icons/home.svg") %></span>
+          <span style="padding-left: 10px">Home</span>
         </a>
       </div>
-      <div class="mb-4">
+      <div class="mb-4" style="padding-left: 8px">
         <a href="/usuarios/<%= user._id %>" class="nav-link link-dark">
-          <span class="p-2"><%- include ("../../public/img/icons/profile.svg") %></span>
-          <span>Profile</span>
+          <span><%- include ("../../public/img/icons/profile.svg") %></span>
+          <span style="padding-left: 12px">Profile</span>
         </a>
       </div>
     </div>
