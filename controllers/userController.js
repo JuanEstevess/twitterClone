@@ -7,10 +7,11 @@ async function index(req, res) {}
 
 // Display the specified resource.
 async function show(req, res) {
+  const profile = true;
   const id = req.params.id;
   const user = await User.findById(id);
   const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
-  return res.render("pages/profile", { allTweets, user });
+  return res.render("pages/profile", { allTweets, user, profile });
 }
 
 // Show the form for creating a new resource
