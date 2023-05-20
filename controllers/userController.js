@@ -1,6 +1,7 @@
 const Tweet = require("../models/Tweet");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const { formattedData } = require("./tweetController");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -11,6 +12,9 @@ async function show(req, res) {
   const id = req.params.id;
   const user = await User.findById(id);
   const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
+  for (let i = 0; i < allTweets.length; i++) {
+    allTweets[i].formattedData = formattedData(allTweets[i].date);
+  }
   return res.render("pages/myProfile", { allTweets, user, profile });
 }
 

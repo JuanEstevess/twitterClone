@@ -62,4 +62,5 @@ module.exports = {
   indexTweet,
   storeTweet,
   destroy,
+  formattedData,
 };
