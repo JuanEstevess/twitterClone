@@ -26,10 +26,10 @@ async function storeTweet(req, res) {
 }
 
 async function destroy(req, res) {
-  const id = req.params._id;
+  const id = req.params.id;
   await Tweet.deleteOne({ _id: id });
 
-  return res.render("pages/index"); //corregir ruta de renderizado
+  return res.redirect("back");
 }
 
 function formattedData(dateTweet) {

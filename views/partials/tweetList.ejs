@@ -24,8 +24,10 @@
           </div>
           <% if(profile){%>
             <div>
-              <i class="icon-end"><button type="submit" class="btn-del"><%-
-                    include("../../public/img/icons/delete.svg")%></button></i>
+             <form method="post" action="/tweet/<%=tweet._id%>?_method=DELETE">
+               <i class="icon-end"><button type="submit" class="btn-del">
+                <%-include("../../public/img/icons/delete.svg")%></button></i>
+             </form>
             </div>
             <% }%>
         </div>
