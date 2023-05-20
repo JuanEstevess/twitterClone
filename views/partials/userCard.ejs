@@ -21,9 +21,17 @@
         </div>
         <div class="align-self-end" id="userFollowers">
           <span class="fw-semibold"><%=user.following.length%></span>
-          <span class="small me-3">Following</span>
+          <span class="small me-3"
+            ><a style="text-decoration: none; color: black" href="/usuarios/<%=user.id%>/following"
+              >Following</a
+            ></span
+          >
           <span class="fw-semibold"><%=user.following.length%></span>
-          <span class="small">Followers</span>
+          <span class="small"
+            ><a style="text-decoration: none; color: black" href="/usuarios/<%=user.id%>/followers"
+              >Followers</a
+            ></span
+          >
         </div>
       </div>
       <div class="mt-3">

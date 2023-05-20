@@ -17,7 +17,9 @@
             <div class="d-flex align-items-center">
               <div>
                 <div>
-                  <a href=""><i class="fa-solid fa-arrow-left" style="color: black"></i></a>
+                  <a href="/usuarios/<%=user.id%>"
+                    ><i class="fa-solid fa-arrow-left" style="color: black"></i
+                  ></a>
                 </div>
               </div>
               <div class="mx-4">
@@ -34,12 +36,24 @@
                 class="border-bottom border-4"
                 style="border-color: var(--color-principal) !important"
               >
-                <h2 class="mb-2 fs-5">Followers</h2>
+                <h2 class="mb-2 fs-5">
+                  <a
+                    style="text-decoration: none; color: black"
+                    href="/usuarios/<%=user.id%>/followers"
+                    >Followers</a
+                  >
+                </h2>
               </div>
 
               <div>
                 <div>
-                  <h2 class="mb-2 fs-5">Following</h2>
+                  <h2 class="mb-2 fs-5">
+                    <a
+                      style="text-decoration: none; color: black"
+                      href="/usuarios/<%=user.id%>/following"
+                      >Following</a
+                    >
+                  </h2>
                 </div>
               </div>
             </div>
