@@ -35,3 +35,21 @@
   color: rgb(103, 106, 125);
   font-weight: 280;
 }
+
+#divImageProfile{
+  position: absolute;
+  top: -70px;
+  left:10px;
+  width: 140px;
+  height: 140px;
+  border-radius: 70px;
+  border: 5px solid white;
+  overflow: hidden;
+}
+
+#imageProfile{
+  width: 100%;
+  height: 100%;
+  border-radius: 70px;
+  object-fit: cover;
+}

@@ -4,7 +4,10 @@
         class="userBackground"
         style="width: 100%; height: 150px; background-color: var(--color-principal)"
       ></div>
-      <div class="container pt-3 border border-top-0">
+      <div class="container pt-3 border border-top-0" style="position:relative;">
+        <div id="divImageProfile">
+          <img id="imageProfile" src="/img/perfil proyecto tw.jpg">
+        </div>
         <div class="d-flex justify-content-between">
           <span
             id="avatar"
@@ -12,7 +15,7 @@
           ></span>
         </div>
         <div class="d-flex justify-content-between" id="userInfo">
-          <div id="username">
+          <div id="username" class="mt-5">
             <h2 class="m-0 fs-4"><%=user.firstname%> <%=user.lastname%></h2>
             <h3 class="small">@<%=user.username%></h3>
           </div>
