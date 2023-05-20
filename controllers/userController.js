@@ -80,7 +80,7 @@ async function showFollowers(req, res) {
   const user = await User.findById(userId);
   const followersId = user.followers;
   const followers = await User.find({ _id: { $in: followersId } });
-  return res.render("pages/followers", { followers });
+  return res.render("pages/followers", { followers, user });
 }
 
 async function showFollowing(req, res) {
@@ -88,16 +88,10 @@ async function showFollowing(req, res) {
   const user = await User.findById(userId);
   const followingId = user.following;
   const following = await User.find({ _id: { $in: followingId } });
-  return res.render("pages/following", { following });
+  return res.render("pages/following", { following, user });
 }
 
-async function storeFollower(req, res) {
-  const userId = req.params.id;
-  const user = await User.findById(userId);
-  const followingId = user.following;
-  const following = await User.find({ _id: { $in: followingId } });
-  return res.render("pages/following", { following });
-}
+async function storeFollower(req, res) {}
 
 module.exports = {
   index,

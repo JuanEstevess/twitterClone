@@ -6,7 +6,7 @@
     ></div>
     <div class="container pt-3 border border-top-0" style="position: relative">
       <div id="divImageProfile">
-        <img id="imageProfile" src="/img/perfil proyecto tw.jpg" />
+        <img id="imageProfile" src="<%= user.image %>" />
       </div>
       <div class="d-flex justify-content-between">
         <span
@@ -31,13 +31,13 @@
         <div class="align-self-end" id="userFollowers">
           <span class="fw-semibold"><%=user.following.length%></span>
           <span class="small me-3"
-            ><a style="text-decoration: none; color: black" href="/usuarios/<%=user._id%>/following"
+            ><a style="text-decoration: none; color: black" href="/usuarios/<%=user.id%>/following"
               >Following</a
             ></span
           >
           <span class="fw-semibold"><%=user.following.length%></span>
           <span class="small"
-            ><a style="text-decoration: none; color: black" href="/usuarios/<%=user._id%>/followers"
+            ><a style="text-decoration: none; color: black" href="/usuarios/<%=user.id%>/followers"
               >Followers</a
             ></span
           >

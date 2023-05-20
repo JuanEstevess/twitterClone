@@ -1,13 +1,13 @@
 <% for(let tweet of allTweets){ %>
 <div class="tweet border border-top-0 p-2">
   <div class="tweet-header d-flex" style="margin-bottom: 0px 0px 10px">
-    <div style="width: 80px">
+    <div>
       <a style="text-decoration: none; color: black" href="/usuarios/<%= tweet.user.id %>">
         <img
           src="<%= tweet.user.image %>"
           alt="Avatar del usuario"
           class="tweet-avatar"
-          style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px"
+          style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px"
       /></a>
     </div>
     <div class="w-100">
@@ -18,8 +18,7 @@
           >
           <span class="tweet-username fw-light" style="color: #888"
             ><a
-              class="mx-2"
-              style="text-decoration: none; color: #888"
+              style="text-decoration: none; color: #888; margin-left: 0.3rem"
               href="/usuarios/<%= tweet.user.id %>"
               >@<%= tweet.user.username%></a
             >
@@ -27,7 +26,9 @@
           </span>
         </div>
       </div>
-      <div class="tweet-content" style="margin-bottom: 10px; height: 45%"><%= tweet.content %></div>
+      <div class="tweet-content mt-1" style="margin-bottom: 10px; height: 45%">
+        <%= tweet.content %>
+      </div>
       <div
         class="tweet-footer"
         style="
