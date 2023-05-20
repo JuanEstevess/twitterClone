@@ -90,6 +90,14 @@ async function showFollowing(req, res) {
   return res.render("pages/following", { following });
 }
 
+async function storeFollower(req, res) {
+  const userId = req.params.id;
+  const user = await User.findById(userId);
+  const followingId = user.following;
+  const following = await User.find({ _id: { $in: followingId } });
+  return res.render("pages/following", { following });
+}
+
 module.exports = {
   index,
   show,
@@ -101,4 +109,5 @@ module.exports = {
   like,
   showFollowers,
   showFollowing,
+  storeFollower,
 };
