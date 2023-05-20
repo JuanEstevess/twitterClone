@@ -11,7 +11,7 @@ async function show(req, res) {
   const id = req.params.id;
   const user = await User.findById(id);
   const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
-  return res.render("pages/profile", { allTweets, user, profile });
+  return res.render("pages/myProfile", { allTweets, user, profile });
 }
 
 // Show the form for creating a new resource
