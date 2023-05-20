@@ -1,3 +1,4 @@
+<% following.forEach((follow) => { %>
 <div class="d-flex">
   <div>
     <img
@@ -8,8 +9,8 @@
     />
   </div>
   <div class="mb-3 flex-fill mx-2">
-    <dl class="m-0 fs-5 fw-bold">Hack Academy</dl>
-    <dd class="m-0">@HackAcademyDev</dd>
+    <dl class="m-0 fs-5 fw-bold"><%= follow.firstname %> <%= follow.lastname %></dl>
+    <dd class="m-0">@<%= follow.username %></dd>
   </div>
   <div class="mb-3 d-flex align-items-center">
     <button
@@ -21,3 +22,4 @@
     </button>
   </div>
 </div>
+<% }) %>

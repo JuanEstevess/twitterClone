@@ -12,5 +12,6 @@ router.post("/crear", userController.store);
 // router.patch("/:id", userController.update);
 // router.delete("/:id", userController.destroy);
 router.get("/:id/followers", userController.showFollowers);
+router.get("/:id/following", userController.showFollowing);
 
 module.exports = router;

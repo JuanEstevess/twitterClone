@@ -71,9 +71,19 @@ async function like(req, res) {
 }
 
 async function showFollowers(req, res) {
-  const id = req.params.id;
-  const user = await User.findById(id);
-  return res.render("pages/followers", { user });
+  const userId = req.params.id;
+  const user = await User.findById(userId);
+  const followersId = user.followers;
+  const followers = await User.find({ _id: { $in: followersId } });
+  return res.render("pages/followers", { followers });
+}
+
+async function showFollowing(req, res) {
+  const userId = req.params.id;
+  const user = await User.findById(userId);
+  const followingId = user.following;
+  const following = await User.find({ _id: { $in: followingId } });
+  return res.render("pages/following", { following });
 }
 
 module.exports = {
@@ -86,4 +96,5 @@ module.exports = {
   destroy,
   like,
   showFollowers,
+  showFollowing,
 };
