@@ -1,38 +1,60 @@
 <% for(let tweet of allTweets){ %>
-  <div class="tweet border border-top-0 p-2">
-    <div class="tweet-header d-flex" style="margin-bottom: 0px 0px 10px">
-      <div style="width: 80px">
-        <img src="<%= tweet.user.image %>" alt="Avatar del usuario" class="tweet-avatar"
-          style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px" />
+<div class="tweet border border-top-0 p-2">
+  <div class="tweet-header d-flex" style="margin-bottom: 0px 0px 10px">
+    <div style="width: 80px">
+      <a style="text-decoration: none; color: black" href="/usuarios/<%= tweet.user.id %>">
+        <img
+          src="<%= tweet.user.image %>"
+          alt="Avatar del usuario"
+          class="tweet-avatar"
+          style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px"
+      /></a>
+    </div>
+    <div class="w-100">
+      <div class="d-flex justify-content-between" style="height: 20%">
+        <div class="tweet-fullname d-flex" style="font-weight: bold">
+          <a style="text-decoration: none; color: black" href="/usuarios/<%= tweet.user.id %>"
+            ><%= tweet.user.firstname %> <%= tweet.user.lastname %></a
+          >
+          <span class="tweet-username fw-light" style="color: #888"
+            ><a
+              class="mx-2"
+              style="text-decoration: none; color: #888"
+              href="/usuarios/<%= tweet.user.id %>"
+              >@<%= tweet.user.username%></a
+            >
+            &bull; <%= tweet.formattedData %>
+          </span>
+        </div>
       </div>
-      <div class="w-100">
-        <div class="d-flex justify-content-between" style="height: 20%;">
-          <div class="tweet-fullname d-flex " style="font-weight: bold">
-            <%= tweet.user.firstname %>
-            <%= tweet.user.lastname %>
-            <span class="tweet-username" style="color: #888">@<%= tweet.user.username%> &bull; <%= tweet.formattedData %>
-            </span>
-          </div>
+      <div class="tweet-content" style="margin-bottom: 10px; height: 45%"><%= tweet.content %></div>
+      <div
+        class="tweet-footer"
+        style="
+          display: flex;
+          justify-content: space-between;
+          color: #888;
+          font-size: 12px;
+          height: 20%;
+        "
+      >
+        <div class="tweet-actions">
+          <span><%- include ("../../public/img/icons/like.svg") %></span>
+          <span>Count</span>
         </div>
-        <div class="tweet-content" style="margin-bottom: 10px; height: 45%;">
-          <%= tweet.content %>
+        <% if(profile){%>
+        <div>
+          <form method="post" action="/tweet/<%=tweet._id%>?_method=DELETE">
+            <i class="icon-end"
+              ><button type="submit" class="btn-del">
+                <%-include("../../public/img/icons/delete.svg")%>
+              </button></i
+            >
+          </form>
         </div>
-        <div class="tweet-footer" style="display: flex; justify-content: space-between; color: #888; font-size: 12px; height: 20%;">
-          <div class="tweet-actions">
-            <span><%- include ("../../public/img/icons/like.svg") %></span>
-            <span>Count</span>
-          </div>
-          <% if(profile){%>
-            <div>
-             <form method="post" action="/tweet/<%=tweet._id%>?_method=DELETE">
-               <i class="icon-end"><button type="submit" class="btn-del">
-                <%-include("../../public/img/icons/delete.svg")%></button></i>
-             </form>
-            </div>
-            <% }%>
-        </div>
+        <% }%>
       </div>
     </div>
-
   </div>
-  <%}%>
+</div>
+<%}%>
