@@ -6,18 +6,14 @@
           style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px" />
       </div>
       <div class="w-100">
-        <div class="d-flex">
-          <div class="tweet-fullname" style="font-weight: bold">
+        <div class="d-flex justify-content-between">
+          <div class="tweet-fullname d-flex " style="font-weight: bold">
             <%= tweet.user.firstname %>
-              <%= tweet.user.lastname %>
+            <%= tweet.user.lastname %>
+            <span class="tweet-username" style="color: #888">@<%= tweet.user.username%> &bull; <%= tweet.formattedData %>
+            </span>
           </div>
-          <div class="tweet-username" style="color: #888">@<%= tweet.user.username%>
-          </div>
-          <div>&bull;</div>
-          <div class="tweet-date">
-            <%= tweet.formattedData %>
-            <% console.log(tweet.formattedData)%>
-          </div>
+
         </div>
         <div class="tweet-content" style="margin-bottom: 10px">
           <%= tweet.content %>
