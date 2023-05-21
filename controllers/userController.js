@@ -91,7 +91,24 @@ async function showFollowing(req, res) {
   return res.render("pages/following", { following, user });
 }
 
-async function storeFollower(req, res) {}
+async function storeFollower(req, res) {
+  const userId = req.params.id;
+  const myUserId = req.user._id;
+  const myUser = await User.findById(myUserId);
+  const otherUser = await User.findById(userId);
+
+  const isMyFollowing = myUser.following.includes(otherUser._id);
+
+  if (!isMyFollowing) {
+    myUser.following.push(otherUser._id);
+    otherUser.followers.push(myUser._id);
+  }
+
+  await myUser.save();
+  await otherUser.save();
+
+  return res.render("pages/following");
+} // no funciona todavía
 
 module.exports = {
   index,
