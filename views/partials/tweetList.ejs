@@ -40,11 +40,11 @@
         "
       >
         <div class="tweet-actions">
-          <% if(loggedUser === tweet.user.id ){%>
-          <span><%- include ("../../public/img/icons/like.svg") %></span>
+          <% console.log(tweet.likes) %> <% if(tweet.likes.includes(loggedUser)){%>
+          <span><%- include ("../../public/img/icons/like-active.svg") %></span>
           <span><%= tweet.likes.length %></span>
           <% } else {%>
-          <span><%- include ("../../public/img/icons/like-active.svg") %></span>
+          <span><%- include ("../../public/img/icons/like.svg") %></span>
           <span><%= tweet.likes.length %></span>
           <% }%>
         </div>
