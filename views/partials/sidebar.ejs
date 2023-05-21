@@ -1,5 +1,5 @@
-<aside>
-  <div class="sidebar-container">
+<aside class="position-fixed">
+  <div>
     <div class="my-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <a href="/">
         <div class="mb-4 p-1">
@@ -21,18 +21,22 @@
       </div>
     </div>
   </div>
-  <div class="sidebar-footer d-flex flex-column justify-content-between">
+  <div class="d-flex flex-column">
     <div>
       <button
         type="submit"
-        class="btn btn-login rounded-pill w-100"
-        style="background-color: var(--color-principal)"
+        class="btn btn-login rounded-pill"
+        style="background-color: var(--color-principal); width: 12.3rem"
       >
         <a class="btn-logout" href="/">Tweet</a>
       </button>
     </div>
     <div>
-      <button type="submit" class="btn btn-danger rounded-pill mb-4 w-100">
+      <button
+        type="submit"
+        class="btn btn-danger rounded-pill mb-3"
+        style="position: fixed; bottom: 0; width: 12.3rem"
+      >
         <a class="btn-logout" href="/logout">Logout</a>
       </button>
     </div>
