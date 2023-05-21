@@ -26,6 +26,15 @@ async function storeTweet(req, res) {
   return res.redirect("/");
 }
 
+async function likeTweet(req, res) {
+  const id = req.params.id;
+  const allTweets = await Tweet.find({ _id: id });
+  for (let i = 0; i < allTweets.likes.length; i++) {
+    allTweets.likes.push(req.session.passport.user);
+  }
+  return res.redirect("/");
+}
+
 async function destroy(req, res) {
   const id = req.params.id;
   await Tweet.deleteOne({ _id: id });
@@ -64,4 +73,5 @@ module.exports = {
   storeTweet,
   destroy,
   formattedData,
+  likeTweet,
 };
