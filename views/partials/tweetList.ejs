@@ -40,7 +40,7 @@
         "
       >
         <div class="tweet-actions d-flex align-items-center">
-          <% if(tweet.likes.includes(loggedUser)){%>
+          <% if(tweet.likes.includes(loggedUserId)){%>
           <div>
             <form method="post" action="/dislike/<%= tweet.id %>?_method=UPDATE">
               <button type="submit" class="btn-del mb-1">
