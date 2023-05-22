@@ -64,6 +64,11 @@
   .sidebarTotal {
     width: 22rem;
   }
+  .flashMessage {
+    width: 27.7rem;
+    bottom: 44.5rem;
+    position: fixed;
+  }
 }
 
 @media (max-width: 1399px) {
@@ -117,6 +122,11 @@
   .sidebarTotal {
     width: 20rem;
   }
+  .flashMessage {
+    width: 18.5rem;
+    bottom: 44.5rem;
+    position: fixed;
+  }
 }
 
 @media (max-width: 991px) {
@@ -141,10 +151,10 @@
     height: 3rem;
     border-radius: 50% !important;
   }
-}
 
-.flashMessage {
-  width: 27.7rem;
-  bottom: 44.5rem;
-  position: absolute;
+  .flashMessage {
+    width: 19.3rem;
+    bottom: 44.5rem;
+    position: fixed;
+  }
 }

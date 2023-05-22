@@ -52,7 +52,7 @@ async function store(req, res) {
       res.redirect("/");
     });
   } else {
-    req.flash("info", "User already exists, please log in");
+    req.flash("info", "Invalid password");
     res.redirect("/login");
   }
 }
