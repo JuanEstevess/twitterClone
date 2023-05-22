@@ -4,7 +4,7 @@ const User = require("../models/User");
 async function indexTweet(req, res) {
   const profile = false;
   const loggedUser = await User.findById(req.session.passport.user);
-  const allTweets = await Tweet.find().populate({ path: "user" });
+  const allTweets = await Tweet.find().populate({ path: "user" }).sort({ date: -1 });
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
   }
