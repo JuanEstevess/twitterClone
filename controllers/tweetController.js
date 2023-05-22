@@ -1,8 +1,9 @@
 const Tweet = require("../models/Tweet");
+const User = require("../models/User");
 
 async function indexTweet(req, res) {
   const profile = false;
-  const loggedUser = req.session.passport.user;
+  const loggedUser = await User.findById(req.session.passport.user);
   const allTweets = await Tweet.find().populate({ path: "user" });
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
@@ -28,11 +29,20 @@ async function storeTweet(req, res) {
 
 async function likeTweet(req, res) {
   const id = req.params.id;
-  const allTweets = await Tweet.find({ _id: id });
-  for (let i = 0; i < allTweets.likes.length; i++) {
-    allTweets.likes.push(req.session.passport.user);
-  }
-  return res.redirect("/");
+  const tweet = await Tweet.findById(id);
+  tweet.likes.addToSet(req.user._id);
+  await tweet.save();
+
+  return res.redirect("back");
+}
+
+async function dislikeTweet(req, res) {
+  const id = req.params.id;
+  const tweet = await Tweet.findById(id);
+  tweet.likes.pull(req.user._id);
+  await tweet.save();
+
+  return res.redirect("back");
 }
 
 async function destroy(req, res) {
@@ -74,4 +84,5 @@ module.exports = {
   destroy,
   formattedData,
   likeTweet,
+  dislikeTweet,
 };

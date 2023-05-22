@@ -7,5 +7,6 @@ router.get("/", ensureAuthenticated, tweetController.indexTweet);
 router.post("/", ensureAuthenticated, tweetController.storeTweet);
 router.delete("/tweet/:id", ensureAuthenticated, tweetController.destroy);
 router.post("/like/:id", ensureAuthenticated, tweetController.likeTweet);
+router.post("/dislike/:id", ensureAuthenticated, tweetController.dislikeTweet);
 
 module.exports = router;

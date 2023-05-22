@@ -9,13 +9,17 @@ async function index(req, res) {}
 // Display the specified resource.
 async function show(req, res) {
   const profile = true;
-  const loggedUser = req.session.passport.user;
+  const loggedUser = await User.findById(req.session.passport.user);
   const id = req.params.id;
   const user = await User.findById(id);
   const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
   }
+
+  // console.log("user: " + user.id);
+  // console.log("loggedUser: " + loggedUser.id);
+
   return res.render("pages/profile", { allTweets, user, profile, loggedUser });
 }
 
@@ -76,39 +80,49 @@ async function like(req, res) {
 }
 
 async function showFollowers(req, res) {
-  const userId = req.params.id;
-  const user = await User.findById(userId);
+  const id = req.params.id;
+  const user = await User.findById(id);
   const followersId = user.followers;
   const followers = await User.find({ _id: { $in: followersId } });
-  return res.render("pages/followers", { followers, user });
+  const loggedUser = await User.findById(req.session.passport.user);
+  return res.render("pages/followers", { followers, user, loggedUser });
 }
 
 async function showFollowing(req, res) {
-  const userId = req.params.id;
-  const user = await User.findById(userId);
+  const id = req.params.id;
+  const user = await User.findById(id);
   const followingId = user.following;
   const following = await User.find({ _id: { $in: followingId } });
-  return res.render("pages/following", { following, user });
+  const loggedUser = await User.findById(req.session.passport.user);
+  return res.render("pages/following", { following, user, loggedUser });
 }
 
 async function storeFollower(req, res) {
-  const userId = req.params.id;
-  const myUserId = req.user._id;
-  const myUser = await User.findById(myUserId);
-  const otherUser = await User.findById(userId);
+  const userA = await User.findById(req.params.id); // usuario que viene por parametro
+  const userB = await User.findById(req.user.id); // usuario logueado
 
-  const isMyFollowing = myUser.following.includes(otherUser._id);
+  console.log(userA.username);
+  console.log(userB.username);
+  const userAFollowsUserB = userB.following.includes(userA.id);
 
-  if (!isMyFollowing) {
-    myUser.following.push(otherUser._id);
-    otherUser.followers.push(myUser._id);
+  if (!userAFollowsUserB) {
+    userB.following.push(userA.id);
+    userA.followers.push(userB.id);
+  } else {
+    let indexOfOtherUser = userB.following.indexOf(userA.id);
+    if (indexOfOtherUser !== -1) {
+      userB.following.splice(indexOfOtherUser, 1);
+    }
+    let indexOfMyUser = userA.followers.indexOf(userB.id);
+    if (indexOfMyUser !== -1) {
+      userA.followers.splice(indexOfMyUser, 1);
+    }
   }
+  await userB.save();
+  await userA.save();
 
-  await myUser.save();
-  await otherUser.save();
-
-  return res.render("pages/following");
-} // no funciona todavía
+  return res.redirect("back");
+}
 
 module.exports = {
   index,

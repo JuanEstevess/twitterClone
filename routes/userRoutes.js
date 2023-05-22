@@ -8,11 +8,14 @@ const { uniqueValidatorMiddleware } = require("../middlewares/uniqueValidatorMid
 router.get("/", ensureAuthenticated, tweetController.indexTweet);
 router.get("/crear", userController.create);
 router.get("/:id", ensureAuthenticated, userController.show);
-router.post("/crear", uniqueValidatorMiddleware, userController.store);
 // router.get("/editar/:id", userController.edit);
-// router.patch("/:id", userController.update);
-// router.delete("/:id", userController.destroy);
 router.get("/:id/followers", userController.showFollowers);
 router.get("/:id/following", userController.showFollowing);
+
+router.post("/crear", userController.store);
+router.post("/:id/followers", userController.storeFollower);
+router.post("/:id/following", userController.storeFollower);
+
+// router.delete("/:id", userController.destroy);
 
 module.exports = router;
