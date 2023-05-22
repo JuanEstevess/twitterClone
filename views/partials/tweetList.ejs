@@ -76,21 +76,3 @@
   </div>
 </div>
 <%}%>
-<div class="d-flex">
-  <% if (page>1) {%>
-  <a
-    class="btn btn-login rounded-pill mt-2 mb-3"
-    style="background-color: var(--color-principal)"
-    href="/?page=<%=page - 1 %>"
-    >Previous</a
-  >
-
-  <%} %> <% if (!(lastPage)) {%>
-  <a
-    class="btn btn-login rounded-pill mt-2 mb-3"
-    style="background-color: var(--color-principal)"
-    href="/?page=<%=page + 1 %>"
-    >Next</a
-  >
-  <%} %>
-</div>
