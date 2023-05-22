@@ -66,7 +66,7 @@ async function update(req, res) {}
 // Remove the specified resource from storage.
 async function destroy(req, res) {}
 
-async function like(req, res) {
+/*async function like(req, res) {
   const tweetId = req.params._id;
   const tweet = await Tweet.findByIdAndUpdate(tweetId, { $inc: { likes: 1 } });
 
@@ -77,7 +77,7 @@ async function like(req, res) {
     await tweet.save();
   }
   return tweet;
-}
+}no se está usando*/
 
 async function showFollowers(req, res) {
   const id = req.params.id;
