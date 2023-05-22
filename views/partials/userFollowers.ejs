@@ -15,7 +15,7 @@
   <div class="mb-3 d-flex align-items-center">
     <% if(loggedUser.id !== follower.id) { %> 
       <% if(follower.followers.includes(loggedUser.id)) { %>
-      <form method="post" action="/usuarios/<%=follower.id%>/following" _?method="PATCH">
+      <form method="post" action="/usuarios/<%=follower.id%>/following"?_method="PATCH">
         <button
           type="submit"
           class="btn btn-login rounded-pill p-1"
@@ -30,7 +30,7 @@
         </button>
       </form>
       <% } else { %>
-      <form method="post" action="/usuarios/<%=follower.id%>/followers" ?_method="PATCH">
+      <form method="post" action="/usuarios/<%=follower.id%>/followers"?_method="PATCH">
         <button type="submit" class="btn btn-login rounded-pill p-1" style="width: 90px">
           Follow
         </button>
