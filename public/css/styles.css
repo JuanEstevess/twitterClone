@@ -60,6 +60,18 @@
   width: 12.3rem;
 }
 
+@media (max-width: 1399px) {
+  #logoutButton {
+    width: 10.3rem;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .tweetButton {
+    width: 10.3rem !important;
+  }
+}
+
 @media (max-width: 1199px) {
   .home {
     display: none;
@@ -96,7 +108,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   #logoutButton {
     width: 3rem;
     height: 3rem;
@@ -117,17 +129,5 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50% !important;
-  }
-}
-
-@media (max-width: 1399px) {
-  #logoutButton {
-    width: 10.3rem;
-    position: fixed;
-    bottom: 0;
-  }
-
-  .tweetButton {
-    width: 10.3rem !important;
   }
 }
