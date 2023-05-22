@@ -60,7 +60,7 @@
           <div><%= tweet.likes.length %></div>
           <% }%>
         </div>
-        <% if(loggedUser === user.id && profile){%>
+        <% if(loggedUserId === user.id && profile){%>
         <div>
           <form method="post" action="/tweet/<%=tweet._id%>?_method=DELETE">
             <i class="icon-end"
