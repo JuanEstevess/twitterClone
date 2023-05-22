@@ -85,7 +85,7 @@ async function showFollowers(req, res) {
   const user = await User.findById(id);
   const followersId = user.followers;
   const followers = await User.find({ _id: { $in: followersId } });
-  const loggedUserId = req.session.passport.user;
+  const loggedUserId = await req.session.passport.user;
   return res.render("pages/followers", { followers, user, loggedUserId });
 }
 
@@ -94,7 +94,7 @@ async function showFollowing(req, res) {
   const user = await User.findById(id);
   const followingId = user.following;
   const following = await User.find({ _id: { $in: followingId } });
-  const loggedUserId = req.session.passport.user;
+  const loggedUserId = await req.session.passport.user;
   return res.render("pages/following", { following, user, loggedUserId });
 }
 
