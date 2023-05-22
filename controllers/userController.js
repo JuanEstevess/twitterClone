@@ -48,11 +48,11 @@ async function store(req, res) {
 
   if (register.upserted) {
     req.login(user, () => {
-      //req.flash("success", "User created succesfully");
+      req.flash("info", "User created succesfully");
       res.redirect("/");
     });
   } else {
-    //req.flash("info", "User already exists, please log in");
+    req.flash("info", "User already exists, please log in");
     res.redirect("/login");
   }
 }

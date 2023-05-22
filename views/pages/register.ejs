@@ -36,6 +36,14 @@
           class="login-container col-sm-12 col-md-7 col-lg-5 bg-white rounded-end d-flex align-items-center"
         >
           <div class="container mx-4">
+            <% if(messages.info){ %>
+            <div class="flashMessage">
+              <div class="alert alert-warning">
+                <p class="m-0"><%= messages.info %></p>
+              </div>
+            </div>
+            <% } %>
+
             <form method="post" action="/usuarios/crear">
               <div class="container p-2 mb-2">
                 <h1 style="color: #353535; font-size: 24px; margin-bottom: 8px">Sign up</h1>
