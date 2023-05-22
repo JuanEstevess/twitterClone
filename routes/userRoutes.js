@@ -12,7 +12,7 @@ router.get("/:id", ensureAuthenticated, userController.show);
 router.get("/:id/followers", userController.showFollowers);
 router.get("/:id/following", userController.showFollowing);
 
-router.post("/crear", userController.store);
+router.post("/crear", uniqueValidatorMiddleware, userController.store);
 router.post("/:id/followers", userController.storeFollower);
 router.post("/:id/following", userController.storeFollower);
 
