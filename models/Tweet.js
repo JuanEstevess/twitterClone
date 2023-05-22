@@ -1,4 +1,5 @@
 const { mongoose, Schema } = require("../db");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 // Crear esquema y modelo User...
 const tweetSchema = new Schema({
@@ -13,5 +14,6 @@ const tweetSchema = new Schema({
     ref: "User",
   },
 });
+tweetSchema.plugin(mongoosePaginate);
 const Tweet = mongoose.model("Tweet", tweetSchema);
 module.exports = Tweet;
