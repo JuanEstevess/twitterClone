@@ -10,6 +10,7 @@ async function index(req, res) {}
 async function show(req, res) {
   const profile = true;
   const loggedUser = await User.findById(req.session.passport.user);
+  const loggedUserId = req.session.passport.user;
   const id = req.params.id;
   const user = await User.findById(id);
   const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
@@ -20,7 +21,7 @@ async function show(req, res) {
   // console.log("user: " + user.id);
   // console.log("loggedUser: " + loggedUser.id);
 
-  return res.render("pages/profile", { allTweets, user, profile, loggedUser });
+  return res.render("pages/profile", { allTweets, user, profile, loggedUser, loggedUserId });
 }
 
 // Show the form for creating a new resource
@@ -84,8 +85,8 @@ async function showFollowers(req, res) {
   const user = await User.findById(id);
   const followersId = user.followers;
   const followers = await User.find({ _id: { $in: followersId } });
-  const loggedUser = await req.user._id;
-  return res.render("pages/followers", { followers, user, loggedUser });
+  const loggedUserId = req.session.passport.user;
+  return res.render("pages/followers", { followers, user, loggedUserId });
 }
 
 async function showFollowing(req, res) {
@@ -93,8 +94,8 @@ async function showFollowing(req, res) {
   const user = await User.findById(id);
   const followingId = user.following;
   const following = await User.find({ _id: { $in: followingId } });
-  const loggedUser = await req.user._id;
-  return res.render("pages/following", { following, user, loggedUser });
+  const loggedUserId = req.session.passport.user;
+  return res.render("pages/following", { following, user, loggedUserId });
 }
 
 async function storeFollower(req, res) {
