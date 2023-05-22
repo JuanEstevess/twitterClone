@@ -2,13 +2,19 @@ const Tweet = require("../models/Tweet");
 const User = require("../models/User");
 
 async function indexTweet(req, res) {
+  const limit = 20;
+  const page = parseInt(req.query.page, 10) || 1;
+  const options = { page, limit, populate: { path: "user" } };
   const profile = false;
   const loggedUser = await User.findById(req.session.passport.user);
-  const allTweets = await Tweet.find().populate({ path: "user" }).sort({ date: -1 });
+  const tweets = await Tweet.find();
+  const lastPage = limit * page >= tweets.length;
+  const { docs: allTweets } = await Tweet.paginate({}, options);
+
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
   }
-  return res.render("pages/index", { allTweets, profile, loggedUser });
+  return res.render("pages/index", { allTweets, profile, loggedUser, page, lastPage });
 }
 
 async function storeTweet(req, res) {
