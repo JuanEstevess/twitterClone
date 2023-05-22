@@ -113,7 +113,6 @@ async function storeFollower(req, res) {
     myUser.following.push(otherUser._id);
     otherUser.followers.push(myUser._id);
   }
-
   await myUser.save();
   await otherUser.save();
 
