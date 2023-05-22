@@ -41,15 +41,17 @@
       >
         <div class="tweet-actions">
           <% if(tweet.likes.includes(loggedUser)){%>
-          <span><%- include ("../../public/img/icons/like-active.svg") %></span>
+          <form method="post" action="/dislike/<%= tweet.id %>?_method=UPDATE">
+            <button type="submit" class="btn-del">
+              <%- include ("../../public/img/icons/like-active.svg") %>
+            </button>
+          </form>
           <span><%= tweet.likes.length %></span>
           <% } else {%>
           <form method="post" action="/like/<%= tweet.id %>?_method=UPDATE">
-            <i class="icon-end">
-              <button type="submit" class="btn-del">
-                <%- include ("../../public/img/icons/like.svg") %>
-              </button></i
-            >
+            <button type="submit" class="btn-del">
+              <%- include ("../../public/img/icons/like.svg") %>
+            </button>
           </form>
           <span><%= tweet.likes.length %></span>
           <% }%>
