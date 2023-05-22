@@ -39,21 +39,25 @@
           height: 20%;
         "
       >
-        <div class="tweet-actions">
+        <div class="tweet-actions d-flex align-items-center">
           <% if(tweet.likes.includes(loggedUser)){%>
-          <form method="post" action="/dislike/<%= tweet.id %>?_method=UPDATE">
-            <button type="submit" class="btn-del">
-              <%- include ("../../public/img/icons/like-active.svg") %>
-            </button>
-          </form>
-          <span><%= tweet.likes.length %></span>
+          <div>
+            <form method="post" action="/dislike/<%= tweet.id %>?_method=UPDATE">
+              <button type="submit" class="btn-del mb-1">
+                <%- include ("../../public/img/icons/like-active.svg") %>
+              </button>
+            </form>
+          </div>
+          <div><%= tweet.likes.length %></div>
           <% } else {%>
-          <form method="post" action="/like/<%= tweet.id %>?_method=UPDATE">
-            <button type="submit" class="btn-del">
-              <%- include ("../../public/img/icons/like.svg") %>
-            </button>
-          </form>
-          <span><%= tweet.likes.length %></span>
+          <div>
+            <form method="post" action="/like/<%= tweet.id %>?_method=UPDATE">
+              <button type="submit" class="btn-del mb-1">
+                <%- include ("../../public/img/icons/like.svg") %>
+              </button>
+            </form>
+          </div>
+          <div><%= tweet.likes.length %></div>
           <% }%>
         </div>
         <% if(loggedUser === user.id && profile){%>

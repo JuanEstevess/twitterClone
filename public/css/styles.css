@@ -23,11 +23,11 @@
   text-decoration: none;
 }
 
-.icon-end{
-  align-items:end;
+.icon-end {
+  align-items: end;
 }
 
-.btn-del{
+.btn-del {
   border: none;
   background-color: white;
 }
@@ -36,10 +36,10 @@
   font-weight: 280;
 }
 
-#divImageProfile{
+#divImageProfile {
   position: absolute;
   top: -70px;
-  left:10px;
+  left: 10px;
   width: 140px;
   height: 140px;
   border-radius: 70px;
@@ -47,9 +47,47 @@
   overflow: hidden;
 }
 
-#imageProfile{
+#imageProfile {
   width: 100%;
   height: 100%;
   border-radius: 70px;
   object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .home {
+    display: none;
+  }
+  .profile {
+    display: none;
+  }
+  .tweetText {
+    display: none;
+  }
+  .tweetImage {
+    display: block !important;
+  }
+  .tweetButton {
+    padding: 0.8rem;
+    width: 100% !important;
+    height: 100%;
+    border-radius: 50% !important;
+  }
+  .logoutText {
+    display: none;
+  }
+  .logoutImage {
+    display: block !important;
+    font-size: 1.8rem;
+  }
+  .logoutButton {
+    padding: 0.8rem;
+    width: 0.5rem;
+    height: 100%;
+    border-radius: 50% !important;
+  }
+}
+
+.logoutButton {
+  width: 12.3rem;
 }

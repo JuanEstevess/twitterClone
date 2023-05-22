@@ -10,13 +10,13 @@
       <div class="mb-4 p-1">
         <a href="/" class="nav-link" aria-current="page">
           <span><%- include ("../../public/img/icons/home.svg") %></span>
-          <span style="padding-left: 10px">Home</span>
+          <span class="home" style="padding-left: 10px">Home</span>
         </a>
       </div>
       <div class="mb-4" style="padding-left: 8px">
         <a href="/usuarios/<%= user._id %>" class="nav-link link-dark">
           <span><%- include ("../../public/img/icons/profile.svg") %></span>
-          <span style="padding-left: 12px">Profile</span>
+          <span class="profile" style="padding-left: 12px">Profile</span>
         </a>
       </div>
     </div>
@@ -25,19 +25,28 @@
     <div>
       <button
         type="submit"
-        class="btn btn-login rounded-pill"
+        class="btn btn-login rounded-pill tweetButton"
         style="background-color: var(--color-principal); width: 12.3rem"
       >
-        <a class="btn-logout" href="/">Tweet</a>
+        <a class="btn-logout" href="/"
+          ><span class="tweetText">Tweet</span
+          ><span class="tweetImage d-none"
+            ><%- include ("../../public/img/icons/write.svg") %></span
+          ></a
+        >
       </button>
     </div>
     <div>
       <button
-        type="submit"
+        type="submit logoutButton"
         class="btn btn-danger rounded-pill mb-3"
-        style="position: fixed; bottom: 0; width: 12.3rem"
+        style="position: fixed; bottom: 0"
       >
-        <a class="btn-logout" href="/logout">Logout</a>
+        <a class="btn-logout" href="/logout"><span class="logoutText">Logout</span> </a>
+        <i
+          class="fa-solid fa-arrow-right-from-bracket d-none logoutImage"
+          style="color: #ffffff"
+        ></i>
       </button>
     </div>
   </div>
