@@ -99,25 +99,31 @@ async function showFollowing(req, res) {
 }
 
 async function storeFollower(req, res) {
-  const userId = req.params.id;
-  const myUserId = req.user._id;
-  const myUser = await User.findById(myUserId);
-  const otherUser = await User.findById(userId);
+  const userA = await User.findById(req.params.id); // usuario que viene por parametro
+  const userB = await User.findById(req.user.id); // usuario logueado
 
-  console.log(userId);
-  console.log(myUserId);
+  console.log(userA.username);
+  console.log(userB.username);
+  const userAFollowsUserB = userB.following.includes(userA.id);
 
-  const isMyFollowing = myUser.following.includes(otherUser._id);
-
-  if (!isMyFollowing) {
-    myUser.following.push(otherUser._id);
-    otherUser.followers.push(myUser._id);
+  if (!userAFollowsUserB) {
+    userB.following.push(userA.id);
+    userA.followers.push(userB.id);
+  } else {
+    let indexOfOtherUser = userB.following.indexOf(userA.id);
+    if (indexOfOtherUser !== -1) {
+      userB.following.splice(indexOfOtherUser, 1);
+    }
+    let indexOfMyUser = userA.followers.indexOf(userB.id);
+    if (indexOfMyUser !== -1) {
+      userA.followers.splice(indexOfMyUser, 1);
+    }
   }
-  await myUser.save();
-  await otherUser.save();
+  await userB.save();
+  await userA.save();
 
   return res.redirect("back");
-} // no funciona todavía
+}
 
 module.exports = {
   index,
