@@ -93,7 +93,7 @@ async function showFollowing(req, res) {
   const user = await User.findById(id);
   const followingId = user.following;
   const following = await User.find({ _id: { $in: followingId } });
-  const loggedUser = await req.user._id;
+  const loggedUser = req.user._id;
   return res.render("pages/following", { following, user, loggedUser });
 }
 
@@ -112,7 +112,6 @@ async function storeFollower(req, res) {
     myUser.following.push(otherUser._id);
     otherUser.followers.push(myUser._id);
   }
-
   await myUser.save();
   await otherUser.save();
 
