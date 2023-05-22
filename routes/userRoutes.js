@@ -3,11 +3,12 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 const tweetController = require("../controllers/tweetController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const { uniqueValidatorMiddleware } = require("../middlewares/uniqueValidatorMiddleware");
 
 router.get("/", ensureAuthenticated, tweetController.indexTweet);
 router.get("/crear", userController.create);
 router.get("/:id", ensureAuthenticated, userController.show);
-router.post("/crear", userController.store);
+router.post("/crear", uniqueValidatorMiddleware, userController.store);
 // router.get("/editar/:id", userController.edit);
 // router.patch("/:id", userController.update);
 // router.delete("/:id", userController.destroy);
