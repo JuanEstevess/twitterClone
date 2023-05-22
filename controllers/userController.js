@@ -9,13 +9,17 @@ async function index(req, res) {}
 // Display the specified resource.
 async function show(req, res) {
   const profile = true;
-  const loggedUser = req.session.passport.user;
+  const loggedUser = await User.findById(req.session.passport.user);
   const id = req.params.id;
   const user = await User.findById(id);
   const allTweets = await Tweet.find({ user: id }).populate({ path: "user" });
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
   }
+  /*
+  console.log("user: " + user.id);
+  console.log("loggedUser: " + loggedUser.id);
+  */
   return res.render("pages/profile", { allTweets, user, profile, loggedUser });
 }
 
