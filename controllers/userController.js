@@ -101,6 +101,9 @@ async function storeFollower(req, res) {
   const myUser = await User.findById(myUserId);
   const otherUser = await User.findById(userId);
 
+  console.log(userId);
+  console.log(myUserId);
+
   const isMyFollowing = myUser.following.includes(otherUser._id);
 
   if (!isMyFollowing) {
@@ -111,7 +114,7 @@ async function storeFollower(req, res) {
   await myUser.save();
   await otherUser.save();
 
-  return res.render("pages/following");
+  return res.redirect("back");
 } // no funciona todavía
 
 module.exports = {
