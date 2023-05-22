@@ -13,8 +13,7 @@ router.get("/:id/followers", userController.showFollowers);
 router.get("/:id/following", userController.showFollowing);
 
 router.post("/crear", uniqueValidatorMiddleware, userController.store);
-router.post("/:id/followers", userController.storeFollower);
-router.post("/:id/following", userController.storeFollower);
+router.post("/:id/follow", userController.storeFollower);
 
 // router.delete("/:id", userController.destroy);
 
