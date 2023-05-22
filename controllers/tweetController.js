@@ -3,13 +3,12 @@ const User = require("../models/User");
 
 async function indexTweet(req, res) {
   const profile = false;
-  const loggedUser = req.session.passport.user;
   const loggedUserId = req.session.passport.user;
   const allTweets = await Tweet.find().populate({ path: "user" });
   for (let i = 0; i < allTweets.length; i++) {
     allTweets[i].formattedData = formattedData(allTweets[i].date);
   }
-  return res.render("pages/index", { allTweets, profile, loggedUser, loggedUserId });
+  return res.render("pages/index", { allTweets, profile, loggedUserId });
 }
 
 async function storeTweet(req, res) {
