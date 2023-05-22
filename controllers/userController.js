@@ -132,7 +132,6 @@ module.exports = {
   edit,
   update,
   destroy,
-  like,
   showFollowers,
   showFollowing,
   storeFollower,
