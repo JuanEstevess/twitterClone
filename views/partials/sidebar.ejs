@@ -1,6 +1,6 @@
 <aside class="position-fixed">
   <div>
-    <div class="my-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <div class="my-3 mb-md-0 me-md-auto link-dark text-decoration-none mainIcon">
       <a href="/">
         <div class="mb-4 p-1">
           <div><%- include ("../../public/img/icons/twitter-logo.svg") %></div>
@@ -14,7 +14,7 @@
         </a>
       </div>
       <div class="mb-4" style="padding-left: 8px">
-        <a href="/usuarios/<%= loggedUserId %>" class="nav-link link-dark">
+        <a href="/usuarios/<%= loggedUser.id %>" class="nav-link link-dark">
           <span><%- include ("../../public/img/icons/profile.svg") %></span>
           <span class="profile" style="padding-left: 12px">Profile</span>
         </a>

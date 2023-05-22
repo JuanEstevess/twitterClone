@@ -1,5 +1,5 @@
 <% for(let tweet of allTweets){ %>
-<div class="tweet border border-top-0 p-2">
+<div class="tweet border border-top-0 p-3">
   <div class="tweet-header d-flex" style="margin-bottom: 0px 0px 10px">
     <div>
       <a style="text-decoration: none; color: black" href="/usuarios/<%= tweet.user.id %>">
@@ -40,7 +40,7 @@
         "
       >
         <div class="tweet-actions d-flex align-items-center">
-          <% if(tweet.likes.includes(loggedUserId)){%>
+          <% if(tweet.likes.includes(loggedUser.id)){%>
           <div>
             <form method="post" action="/dislike/<%= tweet.id %>?_method=UPDATE">
               <button type="submit" class="btn-del mb-1">
@@ -60,7 +60,7 @@
           <div><%= tweet.likes.length %></div>
           <% }%>
         </div>
-        <% if(loggedUserId === user.id && profile){%>
+        <% if(loggedUser.id === user.id && profile){%>
         <div>
           <form method="post" action="/tweet/<%=tweet._id%>?_method=DELETE">
             <i class="icon-end"

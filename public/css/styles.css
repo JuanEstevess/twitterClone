@@ -60,15 +60,23 @@
   width: 12.3rem;
 }
 
+@media (min-width: 1400px) {
+  .sidebarTotal {
+    width: 22rem;
+  }
+}
+
 @media (max-width: 1399px) {
   #logoutButton {
     width: 10.3rem;
     position: fixed;
     bottom: 0;
   }
-
   .tweetButton {
     width: 10.3rem !important;
+  }
+  .sidebarTotal {
+    width: 20rem;
   }
 }
 
@@ -105,6 +113,9 @@
     border-radius: 50% !important;
     position: fixed;
     bottom: 0;
+  }
+  .sidebarTotal {
+    width: 20rem;
   }
 }
 
